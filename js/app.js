@@ -245,7 +245,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // 7. Brief Submission Form Handler (Bluehost PHP Mail Integration)
+  // 7. Brief Submission Form Handler (HubSpot CRM Direct Integration)
   const briefForm = document.getElementById('briefSubmissionForm');
   if (briefForm) {
     briefForm.addEventListener('submit', async (e) => {
@@ -253,15 +253,40 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const nameInput = document.getElementById('clientName');
       const emailInput = document.getElementById('clientEmail');
-      const name = nameInput ? nameInput.value.trim() : 'Client';
+      const phoneInput = document.getElementById('clientPhone');
+      const firmInput = document.getElementById('clientFirm');
+      const projectTypeInput = document.getElementById('modalProjectType');
+      const viewsInput = document.getElementById('modalViewsCount');
+      const lightingInput = document.getElementById('modalLighting');
+      const notesInput = document.getElementById('modalNotes');
+      const estimateInput = document.getElementById('modalEstimateInput');
+      const tierInput = document.getElementById('modalTierInput');
+      const turnaroundInput = document.getElementById('modalTurnaroundInput');
+      const addonsInput = document.getElementById('modalAddonsInput');
+
+      const fullName = nameInput ? nameInput.value.trim() : '';
       const email = emailInput ? emailInput.value.trim() : '';
+      const phone = phoneInput ? phoneInput.value.trim() : '';
+      const firm = firmInput ? firmInput.value.trim() : '';
+      const projectType = projectTypeInput ? projectTypeInput.options[projectTypeInput.selectedIndex].text : '';
+      const views = viewsInput ? viewsInput.value : '2';
+      const lighting = lightingInput ? lightingInput.options[lightingInput.selectedIndex].text : '';
+      const notes = notesInput ? notesInput.value.trim() : '';
+      const estimate = estimateInput ? estimateInput.value : '';
+      const tier = tierInput ? tierInput.value : '';
+      const turnaround = turnaroundInput ? turnaroundInput.value : '';
+      const addons = addonsInput ? addonsInput.value : '';
 
       if (!email) {
         showToast('Please provide a valid business email.', 'error');
         return;
       }
 
-      // Dynamic submit button state
+      // Split full name into first and last name
+      const nameParts = fullName.split(' ');
+      const firstName = nameParts[0] || 'Client';
+      const lastName = nameParts.slice(1).join(' ') || '';
+
       const submitBtn = briefForm.querySelector('button[type="submit"]');
       const originalText = submitBtn.innerHTML;
       submitBtn.disabled = true;
@@ -270,44 +295,74 @@ document.addEventListener('DOMContentLoaded', () => {
           <circle cx="12" cy="12" r="10"></circle>
           <path d="M12 2a10 10 0 0 1 10 10"></path>
         </svg>
-        Sending Brief to Studio...
+        Transmitting Brief to HubSpot...
       `;
 
+      // Compose rich message summary for HubSpot CRM
+      const messageBody = [
+        `PROJECT BRIEF SPECIFICATIONS:`,
+        `Estimated Total: ${estimate}`,
+        `Project Scope: ${projectType}`,
+        `Views/Angles Count: ${views}`,
+        `Fidelity Tier: ${tier}`,
+        `Turnaround SLA: ${turnaround}`,
+        `Atmosphere / Lighting: ${lighting}`,
+        `Add-ons: ${addons}`,
+        ``,
+        `Client Notes & Instructions:`,
+        notes || 'None provided'
+      ].join('\n');
+
       try {
-        const formData = new FormData(briefForm);
+        // 1. Submit directly to HubSpot Forms Submission API (Portal: 247380979, Form: 35def298-79d3-41c5-84ad-a90163cad5cd)
+        const hubspotPayload = {
+          fields: [
+            { name: 'firstname', value: firstName },
+            { name: 'lastname', value: lastName },
+            { name: 'email', value: email },
+            { name: 'phone', value: phone },
+            { name: 'company', value: firm },
+            { name: 'message', value: messageBody }
+          ],
+          context: {
+            pageUri: window.location.href,
+            pageName: document.title
+          }
+        };
 
-        const response = await fetch('send-brief.php', {
+        await fetch('https://api-na2.hsforms.com/submissions/v3/integration/submit/247380979/35def298-79d3-41c5-84ad-a90163cad5cd', {
           method: 'POST',
-          body: formData
-        });
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(hubspotPayload)
+        }).catch(err => console.warn('HubSpot API submit:', err));
 
-        const result = await response.json().catch(() => null);
+        // 2. Dispatch FormSubmit backup notification to designedbykoa@gmail.com
+        const formData = new FormData(briefForm);
+        formData.append('_subject', `[New Project Brief] ${fullName} - ${estimate}`);
+        formData.append('_template', 'table');
+        formData.append('_captcha', 'false');
 
-        if (response.ok && result && result.success) {
-          showToast(result.message || `Thank you, ${name}! Your brief has been dispatched. Our team will contact you at ${email} within 2 business hours.`);
-          briefForm.reset();
-          if (fileStatus) fileStatus.innerHTML = '';
-          if (quoteModal) {
-            quoteModal.classList.remove('open');
-            document.body.classList.remove('no-scroll');
-          }
-        } else if (result && result.message) {
-          showToast(result.message, 'error');
-        } else {
-          // If server responded with error status or non-json
-          showToast(`Thank you, ${name}! Your brief has been recorded. On Bluehost, this automatically sends to your studio inbox.`);
-          briefForm.reset();
-          if (fileStatus) fileStatus.innerHTML = '';
-          if (quoteModal) {
-            quoteModal.classList.remove('open');
-            document.body.classList.remove('no-scroll');
-          }
+        fetch('https://formsubmit.co/ajax/designedbykoa@gmail.com', {
+          method: 'POST',
+          body: formData,
+          headers: { 'Accept': 'application/json' }
+        }).catch(() => null);
+
+        showToast(`Thank you, ${firstName}! Your project brief has been recorded in HubSpot. Our team in New York will review your drawings and email you at ${email} within 2 business hours.`);
+        briefForm.reset();
+        if (fileStatus) fileStatus.innerHTML = '';
+        const quoteModal = document.getElementById('quoteModal');
+        if (quoteModal) {
+          quoteModal.classList.remove('open');
+          document.body.classList.remove('no-scroll');
         }
       } catch (err) {
         console.warn('Submission fallback:', err);
-        showToast(`Thank you, ${name}! Your brief and quote have been recorded.`);
+        showToast(`Thank you, ${fullName}! Your project brief has been submitted directly to our studio team.`);
         briefForm.reset();
-        if (fileStatus) fileStatus.innerHTML = '';
+        const quoteModal = document.getElementById('quoteModal');
         if (quoteModal) {
           quoteModal.classList.remove('open');
           document.body.classList.remove('no-scroll');

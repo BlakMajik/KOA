@@ -224,6 +224,8 @@ class PricingCalculator {
 
   transferToModal() {
     const catConfig = PRICING_CONFIG.categories[this.selectedCategory];
+    const tierConfig = PRICING_CONFIG.tiers[this.selectedTier];
+    const turnConfig = PRICING_CONFIG.turnaround[this.selectedTurnaround];
     const currentTotal = document.getElementById('summaryTotalAmount')?.textContent || '0';
 
     // Pre-select form fields in quote modal
@@ -235,6 +237,22 @@ class PricingCalculator {
     const modalViewsInput = document.getElementById('modalViewsCount');
     if (modalViewsInput) {
       modalViewsInput.value = this.viewsCount;
+    }
+
+    const modalTierInput = document.getElementById('modalTierInput');
+    if (modalTierInput) {
+      modalTierInput.value = tierConfig ? tierConfig.name : this.selectedTier;
+    }
+
+    const modalTurnaroundInput = document.getElementById('modalTurnaroundInput');
+    if (modalTurnaroundInput) {
+      modalTurnaroundInput.value = turnConfig ? turnConfig.name : this.selectedTurnaround;
+    }
+
+    const modalAddonsInput = document.getElementById('modalAddonsInput');
+    if (modalAddonsInput) {
+      const addonNames = Array.from(this.selectedAddons).map(k => PRICING_CONFIG.addons[k]?.name || k);
+      modalAddonsInput.value = addonNames.length > 0 ? addonNames.join(', ') : 'None';
     }
 
     const modalEstimateBadge = document.getElementById('modalEstimateDisplay');
@@ -251,7 +269,7 @@ class PricingCalculator {
     const modal = document.getElementById('quoteModal');
     if (modal) {
       modal.classList.add('open');
-      document.body.style.overflow = 'hidden';
+      document.body.classList.add('no-scroll');
     }
   }
 }
