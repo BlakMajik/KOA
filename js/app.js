@@ -317,12 +317,12 @@ document.addEventListener('DOMContentLoaded', () => {
         // 1. Submit directly to HubSpot Forms Submission API (Portal: 247380979, Form: 35def298-79d3-41c5-84ad-a90163cad5cd)
         const hubspotPayload = {
           fields: [
-            { name: 'firstname', value: firstName },
-            { name: 'lastname', value: lastName },
-            { name: 'email', value: email },
-            { name: 'phone', value: phone },
-            { name: 'company', value: firm },
-            { name: 'message', value: messageBody }
+            { objectTypeId: '0-1', name: 'firstname', value: firstName },
+            { objectTypeId: '0-1', name: 'lastname', value: lastName },
+            { objectTypeId: '0-1', name: 'email', value: email },
+            { objectTypeId: '0-1', name: 'phone', value: phone },
+            { objectTypeId: '0-1', name: 'company', value: firm },
+            { objectTypeId: '0-1', name: 'message', value: messageBody }
           ],
           context: {
             pageUri: window.location.href,
