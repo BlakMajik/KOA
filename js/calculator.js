@@ -78,8 +78,8 @@ class PricingCalculator {
   }
 
   bindDOM() {
-    // Category options
-    const categoryEls = document.querySelectorAll('[data-category]');
+    // Category options (scoped to .category-option)
+    const categoryEls = document.querySelectorAll('.category-option[data-category]');
     categoryEls.forEach(el => {
       el.addEventListener('click', () => {
         categoryEls.forEach(c => c.classList.remove('active'));
@@ -100,8 +100,8 @@ class PricingCalculator {
       });
     }
 
-    // Tier options
-    const tierEls = document.querySelectorAll('[data-tier]');
+    // Tier options (scoped to .pill-option)
+    const tierEls = document.querySelectorAll('.pill-option[data-tier]');
     tierEls.forEach(el => {
       el.addEventListener('click', () => {
         tierEls.forEach(t => t.classList.remove('active'));
@@ -111,8 +111,8 @@ class PricingCalculator {
       });
     });
 
-    // Turnaround speed
-    const turnaroundEls = document.querySelectorAll('[data-turnaround]');
+    // Turnaround speed (scoped to .pill-option)
+    const turnaroundEls = document.querySelectorAll('.pill-option[data-turnaround]');
     turnaroundEls.forEach(el => {
       el.addEventListener('click', () => {
         turnaroundEls.forEach(t => t.classList.remove('active'));

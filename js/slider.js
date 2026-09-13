@@ -69,7 +69,7 @@ class ComparisonSlider {
 
   drag(e) {
     if (!this.isDragging) return;
-    if (e.type === 'touchmove') {
+    if (e.type === 'touchmove' && e.cancelable) {
       e.preventDefault(); // Prevent page scroll while dragging
     }
     this.updateWithEvent(e);
@@ -77,7 +77,8 @@ class ComparisonSlider {
 
   updateWithEvent(e) {
     const rect = this.slider.getBoundingClientRect();
-    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    const clientX = (e.touches && e.touches.length > 0) ? e.touches[0].clientX : e.clientX;
+    if (clientX === undefined) return;
     const xPos = clientX - rect.left;
     let percentage = (xPos / rect.width) * 100;
     percentage = Math.max(0, Math.min(100, percentage));

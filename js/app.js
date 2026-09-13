@@ -14,7 +14,66 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // 2. Portfolio Filtering
+  // 2. Mobile Menu Drawer Navigation
+  const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+  const mobileNavDrawer = document.getElementById('mobileNavDrawer');
+  const mobileNavBackdrop = document.getElementById('mobileNavBackdrop');
+  const mobileDrawerClose = document.getElementById('mobileDrawerClose');
+  const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+  const mobileDrawerQuoteBtn = document.getElementById('mobileDrawerQuoteBtn');
+
+  function openMobileMenu() {
+    if (mobileMenuBtn) {
+      mobileMenuBtn.classList.add('active');
+      mobileMenuBtn.setAttribute('aria-expanded', 'true');
+    }
+    if (mobileNavDrawer) mobileNavDrawer.classList.add('open');
+    if (mobileNavBackdrop) mobileNavBackdrop.classList.add('open');
+    document.body.classList.add('no-scroll');
+  }
+
+  function closeMobileMenu() {
+    if (mobileMenuBtn) {
+      mobileMenuBtn.classList.remove('active');
+      mobileMenuBtn.setAttribute('aria-expanded', 'false');
+    }
+    if (mobileNavDrawer) mobileNavDrawer.classList.remove('open');
+    if (mobileNavBackdrop) mobileNavBackdrop.classList.remove('open');
+    document.body.classList.remove('no-scroll');
+  }
+
+  if (mobileMenuBtn) {
+    mobileMenuBtn.addEventListener('click', () => {
+      const isOpen = mobileNavDrawer?.classList.contains('open');
+      if (isOpen) {
+        closeMobileMenu();
+      } else {
+        openMobileMenu();
+      }
+    });
+  }
+
+  if (mobileDrawerClose) {
+    mobileDrawerClose.addEventListener('click', closeMobileMenu);
+  }
+
+  if (mobileNavBackdrop) {
+    mobileNavBackdrop.addEventListener('click', closeMobileMenu);
+  }
+
+  mobileNavLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      closeMobileMenu();
+    });
+  });
+
+  if (mobileDrawerQuoteBtn) {
+    mobileDrawerQuoteBtn.addEventListener('click', () => {
+      closeMobileMenu();
+    });
+  }
+
+  // 3. Portfolio Filtering
   const filterBtns = document.querySelectorAll('.filter-btn');
   const portfolioItems = document.querySelectorAll('.portfolio-card');
 
@@ -44,7 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // 3. Portfolio Lightbox Modal
+  // 4. Portfolio Lightbox Modal
   const lightboxModal = document.getElementById('lightboxModal');
   const lightboxImg = document.getElementById('lightboxImg');
   const lightboxTitle = document.getElementById('lightboxTitle');
@@ -66,7 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (lightboxModal) {
         lightboxModal.classList.add('open');
-        document.body.style.overflow = 'hidden';
+        document.body.classList.add('no-scroll');
       }
     });
   });
@@ -74,11 +133,11 @@ document.addEventListener('DOMContentLoaded', () => {
   if (lightboxClose) {
     lightboxClose.addEventListener('click', () => {
       lightboxModal.classList.remove('open');
-      document.body.style.overflow = '';
+      document.body.classList.remove('no-scroll');
     });
   }
 
-  // 4. Quote / Brief Submission Modal Controls
+  // 5. Quote / Brief Submission Modal Controls
   const quoteModal = document.getElementById('quoteModal');
   const quoteOpenBtns = document.querySelectorAll('.open-quote-modal');
   const quoteCloseBtn = document.getElementById('quoteModalClose');
@@ -93,7 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       if (quoteModal) {
         quoteModal.classList.add('open');
-        document.body.style.overflow = 'hidden';
+        document.body.classList.add('no-scroll');
       }
     });
   });
@@ -101,7 +160,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (quoteCloseBtn) {
     quoteCloseBtn.addEventListener('click', () => {
       quoteModal.classList.remove('open');
-      document.body.style.overflow = '';
+      document.body.classList.remove('no-scroll');
     });
   }
 
@@ -109,15 +168,30 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('click', (e) => {
     if (e.target === quoteModal) {
       quoteModal.classList.remove('open');
-      document.body.style.overflow = '';
+      document.body.classList.remove('no-scroll');
     }
     if (e.target === lightboxModal) {
       lightboxModal.classList.remove('open');
-      document.body.style.overflow = '';
+      document.body.classList.remove('no-scroll');
     }
   });
 
-  // 5. Simulated CAD File Upload Dropzone
+  // Global Escape key listener
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeMobileMenu();
+      if (quoteModal && quoteModal.classList.contains('open')) {
+        quoteModal.classList.remove('open');
+        document.body.classList.remove('no-scroll');
+      }
+      if (lightboxModal && lightboxModal.classList.contains('open')) {
+        lightboxModal.classList.remove('open');
+        document.body.classList.remove('no-scroll');
+      }
+    }
+  });
+
+  // 6. Simulated CAD File Upload Dropzone
   const dropzone = document.getElementById('uploadDropzone');
   const fileInput = document.getElementById('cadFileInput');
   const fileStatus = document.getElementById('uploadFileStatus');
@@ -161,7 +235,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // 6. Brief Submission Form Handler
+  // 7. Brief Submission Form Handler
   const briefForm = document.getElementById('briefSubmissionForm');
   if (briefForm) {
     briefForm.addEventListener('submit', (e) => {
@@ -192,7 +266,7 @@ document.addEventListener('DOMContentLoaded', () => {
         submitBtn.disabled = false;
         submitBtn.innerHTML = originalText;
         quoteModal.classList.remove('open');
-        document.body.style.overflow = '';
+        document.body.classList.remove('no-scroll');
         briefForm.reset();
         if (fileStatus) fileStatus.innerHTML = '';
 
@@ -201,7 +275,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 7. FAQ Accordion Toggle
+  // 8. FAQ Accordion Toggle
   const faqItems = document.querySelectorAll('.faq-item');
   faqItems.forEach(item => {
     const questionBtn = item.querySelector('.faq-question');
@@ -215,7 +289,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // 8. Toast Notification System
+  // 9. Toast Notification System
   function showToast(message, type = 'success') {
     let toast = document.getElementById('toastNotice');
     if (!toast) {

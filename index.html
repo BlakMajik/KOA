@@ -35,9 +35,56 @@
       <div class="nav-actions">
         <a href="#calculator" class="btn btn-secondary btn-sm" id="navCalcBtn">Instant Quote</a>
         <button class="btn btn-primary btn-sm open-quote-modal" id="navSubmitBriefBtn">Submit Brief</button>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation menu" aria-expanded="false">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
       </div>
     </div>
   </header>
+
+  <!-- Mobile Navigation Drawer -->
+  <div class="mobile-nav-backdrop" id="mobileNavBackdrop"></div>
+  <nav class="mobile-nav-drawer" id="mobileNavDrawer" aria-label="Mobile Navigation">
+    <div class="mobile-drawer-header">
+      <div class="brand-logo">
+        <div class="brand-symbol"></div>
+        <span class="brand-text">DESIGNS BY <span class="accent-word">KOA</span></span>
+      </div>
+      <button class="mobile-drawer-close" id="mobileDrawerClose" aria-label="Close menu">&times;</button>
+    </div>
+    
+    <ul class="mobile-nav-links">
+      <li><a href="#comparison" class="mobile-nav-link"><span>01</span> Before / After Slider</a></li>
+      <li><a href="#calculator" class="mobile-nav-link"><span>02</span> Price Calculator</a></li>
+      <li><a href="#market-analysis" class="mobile-nav-link"><span>03</span> Market Analysis</a></li>
+      <li><a href="#packages" class="mobile-nav-link"><span>04</span> Pricing Tiers</a></li>
+      <li><a href="#portfolio" class="mobile-nav-link"><span>05</span> Featured Portfolio</a></li>
+      <li><a href="#faq" class="mobile-nav-link"><span>06</span> Client FAQ</a></li>
+    </ul>
+
+    <div class="mobile-drawer-footer">
+      <button class="btn btn-primary btn-full open-quote-modal" id="mobileDrawerQuoteBtn">
+        Submit Project Brief
+      </button>
+      <div class="mobile-drawer-contact">
+        <div class="drawer-contact-item">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+          </svg>
+          +1 (800) 492-7489
+        </div>
+        <div class="drawer-contact-item">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+            <polyline points="22,6 12,13 2,6"></polyline>
+          </svg>
+          projects@designsbykoa.com
+        </div>
+      </div>
+    </div>
+  </nav>
 
   <!-- =========================================================================
        Hero Section
@@ -480,6 +527,12 @@
       </div>
 
       <div class="market-table-card">
+        <div class="table-scroll-hint">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+          Swipe horizontally to compare full table
+        </div>
         <div class="table-responsive">
           <table class="market-table">
             <thead>
@@ -928,17 +981,17 @@
   <!-- =========================================================================
        Final Call-to-Action Banner
        ========================================================================= -->
-  <section class="section" style="padding-top: 40px; padding-bottom: 80px;">
+  <section class="section cta-banner-section">
     <div class="container">
-      <div style="background: linear-gradient(135deg, #1c212d 0%, #101217 100%); border: 1px solid var(--border-accent); border-radius: 24px; padding: 60px 40px; text-align: center; box-shadow: var(--shadow-lg); position: relative; overflow: hidden;">
+      <div class="cta-banner-card">
         <div class="badge-tag">Ready To Visualize?</div>
-        <h2 style="font-size: clamp(2rem, 3.5vw, 3rem); margin-bottom: 20px;">
+        <h2 class="cta-banner-title">
           Elevate Your Architectural Vision Today.
         </h2>
-        <p style="max-width: 620px; margin: 0 auto 36px; font-size: 1.1rem; color: var(--text-secondary);">
+        <p class="cta-banner-desc">
           Send us your blueprints, Revit, or SketchUp models for an instant formal proposal within 2 hours.
         </p>
-        <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+        <div class="cta-banner-actions">
           <button class="btn btn-primary open-quote-modal" id="footerSubmitBriefBtn">
             Submit Your Project Brief
           </button>
@@ -1036,7 +1089,7 @@
       </div>
 
       <form id="briefSubmissionForm">
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+        <div class="form-row-2col">
           <div class="form-group">
             <label class="form-label" for="clientName">Full Name *</label>
             <input type="text" id="clientName" class="form-input" placeholder="e.g. John Miller" required>
@@ -1047,7 +1100,7 @@
           </div>
         </div>
 
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+        <div class="form-row-2col">
           <div class="form-group">
             <label class="form-label" for="clientPhone">Phone Number</label>
             <input type="tel" id="clientPhone" class="form-input" placeholder="+1 (555) 000-0000">
@@ -1058,7 +1111,7 @@
           </div>
         </div>
 
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+        <div class="form-row-2col">
           <div class="form-group">
             <label class="form-label" for="modalProjectType">Project Category</label>
             <select id="modalProjectType" class="form-select">
