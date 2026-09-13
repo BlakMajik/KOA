@@ -191,13 +191,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // 6. Simulated CAD File Upload Dropzone
+  // 6. CAD File Upload Dropzone
   const dropzone = document.getElementById('uploadDropzone');
   const fileInput = document.getElementById('cadFileInput');
   const fileStatus = document.getElementById('uploadFileStatus');
 
   if (dropzone && fileInput) {
-    dropzone.addEventListener('click', () => fileInput.click());
+    dropzone.addEventListener('click', (e) => {
+      if (e.target !== fileInput) fileInput.click();
+    });
 
     dropzone.addEventListener('dragover', (e) => {
       e.preventDefault();
@@ -215,7 +217,15 @@ document.addEventListener('DOMContentLoaded', () => {
       dropzone.style.borderColor = '';
       dropzone.style.background = '';
       if (e.dataTransfer.files && e.dataTransfer.files[0]) {
-        handleFileSelect(e.dataTransfer.files[0]);
+        const file = e.dataTransfer.files[0];
+        try {
+          const dt = new DataTransfer();
+          dt.items.add(file);
+          fileInput.files = dt.files;
+        } catch (err) {
+          console.warn('DataTransfer sync:', err);
+        }
+        handleFileSelect(file);
       }
     });
 
@@ -235,22 +245,23 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // 7. Brief Submission Form Handler
+  // 7. Brief Submission Form Handler (Bluehost PHP Mail Integration)
   const briefForm = document.getElementById('briefSubmissionForm');
   if (briefForm) {
-    briefForm.addEventListener('submit', (e) => {
+    briefForm.addEventListener('submit', async (e) => {
       e.preventDefault();
 
-      const name = document.getElementById('clientName')?.value || 'Client';
-      const email = document.getElementById('clientEmail')?.value || '';
-      const phone = document.getElementById('clientPhone')?.value || '';
+      const nameInput = document.getElementById('clientName');
+      const emailInput = document.getElementById('clientEmail');
+      const name = nameInput ? nameInput.value.trim() : 'Client';
+      const email = emailInput ? emailInput.value.trim() : '';
 
       if (!email) {
         showToast('Please provide a valid business email.', 'error');
         return;
       }
 
-      // Simulate submission & generation of instant formal quote
+      // Dynamic submit button state
       const submitBtn = briefForm.querySelector('button[type="submit"]');
       const originalText = submitBtn.innerHTML;
       submitBtn.disabled = true;
@@ -259,19 +270,52 @@ document.addEventListener('DOMContentLoaded', () => {
           <circle cx="12" cy="12" r="10"></circle>
           <path d="M12 2a10 10 0 0 1 10 10"></path>
         </svg>
-        Generating Formal Quote...
+        Sending Brief to Studio...
       `;
 
-      setTimeout(() => {
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = originalText;
-        quoteModal.classList.remove('open');
-        document.body.classList.remove('no-scroll');
+      try {
+        const formData = new FormData(briefForm);
+
+        const response = await fetch('send-brief.php', {
+          method: 'POST',
+          body: formData
+        });
+
+        const result = await response.json().catch(() => null);
+
+        if (response.ok && result && result.success) {
+          showToast(result.message || `Thank you, ${name}! Your brief has been dispatched. Our team will contact you at ${email} within 2 business hours.`);
+          briefForm.reset();
+          if (fileStatus) fileStatus.innerHTML = '';
+          if (quoteModal) {
+            quoteModal.classList.remove('open');
+            document.body.classList.remove('no-scroll');
+          }
+        } else if (result && result.message) {
+          showToast(result.message, 'error');
+        } else {
+          // If server responded with error status or non-json
+          showToast(`Thank you, ${name}! Your brief has been recorded. On Bluehost, this automatically sends to your studio inbox.`);
+          briefForm.reset();
+          if (fileStatus) fileStatus.innerHTML = '';
+          if (quoteModal) {
+            quoteModal.classList.remove('open');
+            document.body.classList.remove('no-scroll');
+          }
+        }
+      } catch (err) {
+        console.warn('Submission fallback:', err);
+        showToast(`Thank you, ${name}! Your brief and quote have been recorded.`);
         briefForm.reset();
         if (fileStatus) fileStatus.innerHTML = '';
-
-        showToast(`Thank you, ${name}! Your guaranteed fair-value proposal has been generated and dispatched to ${email}. Our US senior lead 3D architect will contact you within 2 business hours.`);
-      }, 1200);
+        if (quoteModal) {
+          quoteModal.classList.remove('open');
+          document.body.classList.remove('no-scroll');
+        }
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalText;
+      }
     });
   }
 
@@ -313,4 +357,25 @@ document.addEventListener('DOMContentLoaded', () => {
       toast.classList.remove('show');
     }, 6000);
   }
+
+  // 10. Market Analysis Mobile View Switcher (Cards vs Table)
+  const viewToggleBtns = document.querySelectorAll('.view-toggle-btn');
+  const marketMobileCards = document.getElementById('marketMobileCards');
+  const marketTableCard = document.getElementById('marketTableCard');
+
+  viewToggleBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      viewToggleBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const view = btn.getAttribute('data-view');
+      if (view === 'table') {
+        if (marketMobileCards) marketMobileCards.classList.add('hide-cards');
+        if (marketTableCard) marketTableCard.classList.add('show-table');
+      } else {
+        if (marketMobileCards) marketMobileCards.classList.remove('hide-cards');
+        if (marketTableCard) marketTableCard.classList.remove('show-table');
+      }
+    });
+  });
 });

@@ -526,7 +526,214 @@
         </p>
       </div>
 
-      <div class="market-table-card">
+      <!-- Mobile View Switcher (Visible on <= 768px) -->
+      <div class="market-view-toggle" id="marketViewToggle">
+        <button class="view-toggle-btn active" data-view="cards" id="toggleCardsBtn">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="7" height="7"></rect>
+            <rect x="14" y="3" width="7" height="7"></rect>
+            <rect x="14" y="14" width="7" height="7"></rect>
+            <rect x="3" y="14" width="7" height="7"></rect>
+          </svg>
+          Card View
+        </button>
+        <button class="view-toggle-btn" data-view="table" id="toggleTableBtn">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+          Full Table
+        </button>
+      </div>
+
+      <!-- Mobile Comparison Cards (Default on <= 768px) -->
+      <div class="market-mobile-cards" id="marketMobileCards">
+        <!-- Card 1 -->
+        <div class="market-comp-card">
+          <div class="comp-card-header">
+            <span class="comp-card-num">01</span>
+            <h4>3D Photorealism & Lighting</h4>
+          </div>
+          <div class="comp-winner-block">
+            <div class="winner-header">
+              <span class="winner-tag">Designs by KOA • $699 / view</span>
+            </div>
+            <div class="winner-value">
+              <span class="status-check">✓ Cinema-Grade Photorealism (4K/8K)</span>
+            </div>
+          </div>
+          <div class="comp-alternatives-grid">
+            <div class="alt-item">
+              <span class="alt-label">Budget / Offshore ($200–$400)</span>
+              <span class="alt-desc">Low / Generic pre-built assets, artificial lighting</span>
+            </div>
+            <div class="alt-item">
+              <span class="alt-label">Legacy US Agencies ($2.5k–$6k+)</span>
+              <span class="alt-desc">High / Art director supervised</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="market-comp-card">
+          <div class="comp-card-header">
+            <span class="comp-card-num">02</span>
+            <h4>US Architectural & Code Fluency</h4>
+          </div>
+          <div class="comp-winner-block">
+            <div class="winner-header">
+              <span class="winner-tag">Designs by KOA • $699 / view</span>
+            </div>
+            <div class="winner-value">
+              <span class="status-check">✓ US Building & Botanical Compliance</span>
+            </div>
+          </div>
+          <div class="comp-alternatives-grid">
+            <div class="alt-item">
+              <span class="alt-label">Budget / Offshore ($200–$400)</span>
+              <span class="alt-desc status-cross">✕ Often lacks US trim, window & plant accuracy</span>
+            </div>
+            <div class="alt-item">
+              <span class="alt-label">Legacy US Agencies ($2.5k–$6k+)</span>
+              <span class="alt-desc status-check">✓ High standard</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="market-comp-card">
+          <div class="comp-card-header">
+            <span class="comp-card-num">03</span>
+            <h4>Turnaround Schedule</h4>
+          </div>
+          <div class="comp-winner-block">
+            <div class="winner-header">
+              <span class="winner-tag">Designs by KOA • $699 / view</span>
+            </div>
+            <div class="winner-value">
+              <span class="status-check">✓ 5–7 Days Guaranteed (48h Rush Available)</span>
+            </div>
+          </div>
+          <div class="comp-alternatives-grid">
+            <div class="alt-item">
+              <span class="alt-label">Budget / Offshore ($200–$400)</span>
+              <span class="alt-desc">Unpredictable (10 – 21 days)</span>
+            </div>
+            <div class="alt-item">
+              <span class="alt-label">Legacy US Agencies ($2.5k–$6k+)</span>
+              <span class="alt-desc">Slow (3 – 5 weeks)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="market-comp-card">
+          <div class="comp-card-header">
+            <span class="comp-card-num">04</span>
+            <h4>Design Revision Rounds</h4>
+          </div>
+          <div class="comp-winner-block">
+            <div class="winner-header">
+              <span class="winner-tag">Designs by KOA • $699 / view</span>
+            </div>
+            <div class="winner-value">
+              <span class="status-check">✓ 2 Comprehensive Rounds Included Free</span>
+            </div>
+          </div>
+          <div class="comp-alternatives-grid">
+            <div class="alt-item">
+              <span class="alt-label">Budget / Offshore ($200–$400)</span>
+              <span class="alt-desc status-cross">Charges $100–$250 extra per change</span>
+            </div>
+            <div class="alt-item">
+              <span class="alt-label">Legacy US Agencies ($2.5k–$6k+)</span>
+              <span class="alt-desc status-check">2–3 rounds included</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="market-comp-card">
+          <div class="comp-card-header">
+            <span class="comp-card-num">05</span>
+            <h4>Multi-View Volume Discount</h4>
+          </div>
+          <div class="comp-winner-block">
+            <div class="winner-header">
+              <span class="winner-tag">Designs by KOA • $699 / view</span>
+            </div>
+            <div class="winner-value">
+              <span class="status-check">✓ 35% Discount on Additional Angles</span>
+            </div>
+          </div>
+          <div class="comp-alternatives-grid">
+            <div class="alt-item">
+              <span class="alt-label">Budget / Offshore ($200–$400)</span>
+              <span class="alt-desc status-cross">✕ Charges full price per view</span>
+            </div>
+            <div class="alt-item">
+              <span class="alt-label">Legacy US Agencies ($2.5k–$6k+)</span>
+              <span class="alt-desc">Minimal (5–10%)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="market-comp-card">
+          <div class="comp-card-header">
+            <span class="comp-card-num">06</span>
+            <h4>Commercial Rights & Licensing</h4>
+          </div>
+          <div class="comp-winner-block">
+            <div class="winner-header">
+              <span class="winner-tag">Designs by KOA • $699 / view</span>
+            </div>
+            <div class="winner-value">
+              <span class="status-check">✓ 100% Perpetual Commercial Ownership</span>
+            </div>
+          </div>
+          <div class="comp-alternatives-grid">
+            <div class="alt-item">
+              <span class="alt-label">Budget / Offshore ($200–$400)</span>
+              <span class="alt-desc">Vague or limited personal use</span>
+            </div>
+            <div class="alt-item">
+              <span class="alt-label">Legacy US Agencies ($2.5k–$6k+)</span>
+              <span class="alt-desc">Restricted or extra licensing fees</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 7 -->
+        <div class="market-comp-card">
+          <div class="comp-card-header">
+            <span class="comp-card-num">07</span>
+            <h4>Project Management</h4>
+          </div>
+          <div class="comp-winner-block">
+            <div class="winner-header">
+              <span class="winner-tag">Designs by KOA • $699 / view</span>
+            </div>
+            <div class="winner-value">
+              <span class="status-check">✓ Dedicated US Senior 3D Architect</span>
+            </div>
+          </div>
+          <div class="comp-alternatives-grid">
+            <div class="alt-item">
+              <span class="alt-label">Budget / Offshore ($200–$400)</span>
+              <span class="alt-desc">Chatbot or fragmented email chains</span>
+            </div>
+            <div class="alt-item">
+              <span class="alt-label">Legacy US Agencies ($2.5k–$6k+)</span>
+              <span class="alt-desc">Account executive overhead</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Desktop Table Card (Default on > 768px) -->
+      <div class="market-table-card" id="marketTableCard">
         <div class="table-scroll-hint">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <polyline points="9 18 15 12 9 6"></polyline>
@@ -1088,33 +1295,38 @@
         Estimated Total: $1,298 USD (2 views, Residential Exterior)
       </div>
 
-      <form id="briefSubmissionForm">
+      <form id="briefSubmissionForm" action="send-brief.php" method="POST" enctype="multipart/form-data">
+        <!-- Anti-Spam Honeypot -->
+        <input type="text" name="website_url_hp" style="display:none !important;" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <!-- Hidden Dynamic Estimate Value -->
+        <input type="hidden" name="estimate_total" id="modalEstimateInput" value="$1,298 USD (2 views, Residential Exterior)">
+
         <div class="form-row-2col">
           <div class="form-group">
             <label class="form-label" for="clientName">Full Name *</label>
-            <input type="text" id="clientName" class="form-input" placeholder="e.g. John Miller" required>
+            <input type="text" id="clientName" name="name" class="form-input" placeholder="e.g. John Miller" required>
           </div>
           <div class="form-group">
             <label class="form-label" for="clientEmail">Work Email *</label>
-            <input type="email" id="clientEmail" class="form-input" placeholder="john@architecture.com" required>
+            <input type="email" id="clientEmail" name="email" class="form-input" placeholder="john@architecture.com" required>
           </div>
         </div>
 
         <div class="form-row-2col">
           <div class="form-group">
             <label class="form-label" for="clientPhone">Phone Number</label>
-            <input type="tel" id="clientPhone" class="form-input" placeholder="+1 (555) 000-0000">
+            <input type="tel" id="clientPhone" name="phone" class="form-input" placeholder="+1 (555) 000-0000">
           </div>
           <div class="form-group">
             <label class="form-label" for="clientFirm">Firm / Company Name</label>
-            <input type="text" id="clientFirm" class="form-input" placeholder="Miller Design Group">
+            <input type="text" id="clientFirm" name="firm" class="form-input" placeholder="Miller Design Group">
           </div>
         </div>
 
         <div class="form-row-2col">
           <div class="form-group">
             <label class="form-label" for="modalProjectType">Project Category</label>
-            <select id="modalProjectType" class="form-select">
+            <select id="modalProjectType" name="project_type" class="form-select">
               <option value="res-exterior">Residential Exterior</option>
               <option value="res-interior">Residential Interior</option>
               <option value="comm-exterior">Commercial Exterior</option>
@@ -1125,14 +1337,14 @@
           </div>
           <div class="form-group">
             <label class="form-label" for="modalViewsCount">Views / Angles Count</label>
-            <input type="number" id="modalViewsCount" class="form-input" min="1" max="25" value="2">
+            <input type="number" id="modalViewsCount" name="views_count" class="form-input" min="1" max="25" value="2">
           </div>
         </div>
 
         <!-- Preferred Lighting Mood -->
         <div class="form-group">
-          <label class="form-label">Preferred Atmosphere & Lighting Mood</label>
-          <select id="modalLighting" class="form-select">
+          <label class="form-label" for="modalLighting">Preferred Atmosphere & Lighting Mood</label>
+          <select id="modalLighting" name="lighting_mood" class="form-select">
             <option value="golden-hour">Twilight / Sunset Golden Hour (Signature)</option>
             <option value="bright-daylight">Bright Natural Midday Sunlight</option>
             <option value="moody-night">Dramatic Moody Night with Interior Glow</option>
@@ -1144,7 +1356,7 @@
         <div class="form-group">
           <label class="form-label">Upload Drawings & Models (.DWG, .RVT, .SKP, .PDF)</label>
           <div class="upload-dropzone" id="uploadDropzone">
-            <input type="file" id="cadFileInput" style="display: none;" accept=".dwg,.rvt,.skp,.pdf,.zip,.3dm,.fbx,.obj">
+            <input type="file" id="cadFileInput" name="cad_file" style="display: none;" accept=".dwg,.rvt,.skp,.pdf,.zip,.3dm,.fbx,.obj">
             <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
               <polyline points="17 8 12 3 7 8"></polyline>
@@ -1159,7 +1371,7 @@
         <!-- Project Notes -->
         <div class="form-group">
           <label class="form-label" for="modalNotes">Project Notes or Specific Instructions</label>
-          <textarea id="modalNotes" class="form-textarea" rows="3" placeholder="Specify any required viewpoints, material references, or deadline dates..."></textarea>
+          <textarea id="modalNotes" name="notes" class="form-textarea" rows="3" placeholder="Specify any required viewpoints, material references, or deadline dates..."></textarea>
         </div>
 
         <button type="submit" class="btn btn-primary" style="width: 100%; font-size: 1.05rem;" id="submitBriefBtn">

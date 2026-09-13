@@ -238,8 +238,13 @@ class PricingCalculator {
     }
 
     const modalEstimateBadge = document.getElementById('modalEstimateDisplay');
+    const modalEstimateInput = document.getElementById('modalEstimateInput');
+    const estimateString = `$${currentTotal} USD (${this.viewsCount} views, ${catConfig.name})`;
     if (modalEstimateBadge) {
-      modalEstimateBadge.textContent = `Estimated Total: $${currentTotal} USD (${this.viewsCount} views, ${catConfig.name})`;
+      modalEstimateBadge.textContent = `Estimated Total: ${estimateString}`;
+    }
+    if (modalEstimateInput) {
+      modalEstimateInput.value = estimateString;
     }
 
     // Trigger modal open
