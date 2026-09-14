@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Privacy & Staging Meta - Strictly Non-Indexed -->
+  <meta name="robots" content="noindex, nofollow">
+  <title>Projects &amp; Architectural Case Studies | Designs by KOA</title>
+  <meta name="description" content="Concept Preview: Residential architecture case studies demonstrating site problem-solving, zoning variance approvals, and 3D design in NY, NJ, and CT.">
+  
+  <link rel="stylesheet" href="../css/preview.css">
+</head>
+<body>
+
+  <!-- =========================================================================
+       Preview Top Disclaimer Banner
+       ========================================================================= -->
+  <div class="preview-banner" id="previewBanner">
+    <div class="preview-banner-content">
+      <span class="preview-badge-pulse"></span>
+      <span>Concept Preview — Not for Public Release</span>
+      <button class="preview-banner-info-btn" id="previewInfoBtn">Preview Info</button>
+    </div>
+  </div>
+
+  <!-- Preview Info Modal -->
+  <div class="preview-modal" id="previewInfoModal">
+    <div class="preview-modal-content">
+      <button class="preview-modal-close" id="previewInfoClose">&times;</button>
+      <div class="eyebrow" style="margin-bottom: 0.5rem;">Internal Staging Environment</div>
+      <h3 class="title-card" style="font-size: 1.5rem; margin-bottom: 0.75rem;">About This Future Preview</h3>
+      <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6; margin-bottom: 1rem;">
+        This portfolio demonstrates the problem-solving case study format. It includes explicit attribution for the founder's prior professional experience at former firms.
+      </p>
+      <div style="background: rgba(245, 158, 11, 0.08); border: 1px dashed rgba(245, 158, 11, 0.4); border-radius: var(--radius-sm); padding: 1rem; margin-bottom: 1.25rem;">
+        <p style="color: #fde68a; font-size: 0.8rem; line-height: 1.5;">
+          <strong>Attribution Note:</strong> Projects created under previous firm employments are clearly marked with former firm and collaborator credits to ensure full professional and regulatory compliance.
+        </p>
+      </div>
+      <button class="btn btn-gold-outline btn-sm" onclick="document.getElementById('previewInfoModal').classList.remove('active');" style="width: 100%;">Understood &amp; Continue</button>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       Case Study Detail Modal
+       ========================================================================= -->
+  <div class="preview-modal" id="caseStudyModal">
+    <div class="preview-modal-content" style="max-width: 800px; max-height: 90vh; overflow-y: auto;">
+      <button class="preview-modal-close" id="caseStudyClose">&times;</button>
+      <div id="caseStudyModalBody">
+        <!-- Injected via preview.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       Header & Navigation (Isolated to /future-preview/)
+       ========================================================================= -->
+  <header class="preview-header" id="previewHeader">
+    <div class="preview-nav-container">
+      <a href="../index.html" class="preview-brand">
+        <div class="preview-brand-mark"></div>
+        <div class="preview-brand-text">
+          <span class="preview-brand-name">DESIGNS BY <span>KOA</span></span>
+          <span class="preview-brand-sub">ARCHITECTURE &bull; RESIDENTIAL [CONCEPT]</span>
+        </div>
+      </a>
+
+      <ul class="preview-nav-menu" id="previewNavMenu">
+        <li><a href="../index.html" class="preview-nav-link">Overview</a></li>
+        <li><a href="../services/index.html" class="preview-nav-link">Services</a></li>
+        <li><a href="index.html" class="preview-nav-link active">Projects &amp; Case Studies</a></li>
+        <li><a href="../process/index.html" class="preview-nav-link">Process</a></li>
+        <li><a href="../about/index.html" class="preview-nav-link">About</a></li>
+      </ul>
+
+      <div class="preview-nav-actions">
+        <a href="../contact/index.html" class="btn btn-primary btn-sm">Start a Project</a>
+        <button class="preview-mobile-toggle" id="previewMobileToggle" aria-label="Toggle Navigation">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- =========================================================================
+       Projects Hero & Filter
+       ========================================================================= -->
+  <section class="section" style="padding-bottom: 2rem;">
+    <div class="preview-container">
+      <div class="section-header text-center">
+        <div class="eyebrow">Architectural Portfolio &amp; Case Studies</div>
+        <h1 class="title-display">Real Challenges. Defensible Solutions.</h1>
+        <p class="lead-text" style="margin: 0 auto 2.5rem auto;">
+          Our portfolio is structured as in-depth case studies—demonstrating how we solve complex zoning setbacks, steep slope challenges, historic preservation guidelines, and coastal resilience requirements.
+        </p>
+
+        <!-- Filter Bar -->
+        <div class="portfolio-filter-bar">
+          <button class="filter-btn active" data-filter="all">All Case Studies</button>
+          <button class="filter-btn" data-filter="new-construction">New Construction</button>
+          <button class="filter-btn" data-filter="renovation">Additions &amp; Renovations</button>
+          <button class="filter-btn" data-filter="approvals">Feasibility &amp; Approvals</button>
+          <button class="filter-btn" data-filter="commercial">Commercial / Visualization</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       Case Studies Grid
+       ========================================================================= -->
+  <section class="section section-darker" style="padding-top: 3rem;">
+    <div class="preview-container">
+      <div class="case-studies-grid">
+
+        <!-- Case Study 1 -->
+        <div class="case-study-card" data-category="new-construction approvals">
+          <div class="case-study-media">
+            <img src="../assets/hudson_valley_estate.jpg" alt="Hudson Valley Hillside Residence" class="case-study-img">
+            <span class="case-study-type-badge">New Construction &bull; Steep Slope</span>
+          </div>
+          <div class="case-study-body">
+            <div class="case-study-location">Garrison, NY &bull; Hudson Highlands</div>
+            <h3 class="case-study-title">Hudson Valley Hillside Residence</h3>
+            <div class="case-study-challenge-pill">
+              Challenge: 28% site slope, shallow bedrock ledge &amp; ridgeline visual preservation review.
+            </div>
+            <p class="case-study-summary">
+              A stepped two-volume timber and stone residence anchored into the hillside, framing panoramic Hudson River vistas with minimal environmental grading.
+            </p>
+            <div class="case-study-metrics">
+              <div class="metric-col">
+                <h6>Scale / Program</h6>
+                <p>5,800 SF Custom Home</p>
+              </div>
+              <div class="metric-col">
+                <h6>Zoning Outcome</h6>
+                <p>Unanimous ZBA Variance</p>
+              </div>
+            </div>
+            <div class="prior-firm-credit">
+              Role: Lead Designer &bull; Prior Experience: [Placeholder: ABC Architecture NYC]
+            </div>
+            <div style="margin-top: 1.5rem;">
+              <button class="btn btn-primary btn-sm" style="width: 100%;" data-case-study-target="hudson-valley">Read Case Study &amp; Technical Breakdown</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Case Study 2 -->
+        <div class="case-study-card" data-category="renovation approvals">
+          <div class="case-study-media">
+            <img src="../assets/greenwich_estate_addition.jpg" alt="Greenwich Estate Addition" class="case-study-img">
+            <span class="case-study-type-badge">Addition &bull; Historic Review</span>
+          </div>
+          <div class="case-study-body">
+            <div class="case-study-location">Greenwich, CT &bull; Back Country</div>
+            <h3 class="case-study-title">Greenwich Manor Glass Pavilion Addition</h3>
+            <div class="case-study-challenge-pill">
+              Challenge: Floor Area Ratio (FAR) caps &amp; strict Historic District Commission visual impact review.
+            </div>
+            <p class="case-study-summary">
+              A modern 3,200 SF glass-and-bronze entertaining wing connected via a minimalist glass breezeway to a 1928 stone manor.
+            </p>
+            <div class="case-study-metrics">
+              <div class="metric-col">
+                <h6>Scale / Scope</h6>
+                <p>3,200 SF Add. / 6,500 SF Reno</p>
+              </div>
+              <div class="metric-col">
+                <h6>Commission Status</h6>
+                <p>Cert. of Appropriateness</p>
+              </div>
+            </div>
+            <div class="prior-firm-credit">
+              Role: Project Architect &bull; Prior Experience: [Placeholder: Greenwich Heritage Architects]
+            </div>
+            <div style="margin-top: 1.5rem;">
+              <button class="btn btn-primary btn-sm" style="width: 100%;" data-case-study-target="greenwich-estate">Read Case Study &amp; Technical Breakdown</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Case Study 3 -->
+        <div class="case-study-card" data-category="new-construction approvals">
+          <div class="case-study-media">
+            <img src="../assets/coastal_residence.jpg" alt="Long Island Sound Coastal Residence" class="case-study-img">
+            <span class="case-study-type-badge">New Construction &bull; Coastal Resilience</span>
+          </div>
+          <div class="case-study-body">
+            <div class="case-study-location">Westport, CT &bull; Waterfront</div>
+            <h3 class="case-study-title">Long Island Sound Resilient Coastal Home</h3>
+            <div class="case-study-challenge-pill">
+              Challenge: FEMA VE Flood Zone elevation limits &amp; coastal CAM tidal wetland buffer.
+            </div>
+            <p class="case-study-summary">
+              A 4,600 SF high-performance waterfront residence with an architectural concrete plinth base and cantilevered decks designed for 100-year storm surges.
+            </p>
+            <div class="case-study-metrics">
+              <div class="metric-col">
+                <h6>Scale / Program</h6>
+                <p>4,600 SF Coastal Residence</p>
+              </div>
+              <div class="metric-col">
+                <h6>Permitting Status</h6>
+                <p>Full CAM &amp; DEEP Clearance</p>
+              </div>
+            </div>
+            <div class="prior-firm-credit">
+              Role: Lead Designer &bull; Prior Experience: [Placeholder: Marine Civil Partners]
+            </div>
+            <div style="margin-top: 1.5rem;">
+              <button class="btn btn-primary btn-sm" style="width: 100%;" data-case-study-target="coastal-sound">Read Case Study &amp; Technical Breakdown</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Case Study 4 -->
+        <div class="case-study-card" data-category="renovation">
+          <div class="case-study-media">
+            <img src="../assets/tribeca_loft.jpg" alt="Tribeca Historic Loft Transformation" class="case-study-img">
+            <span class="case-study-type-badge">Renovation &bull; Interior Architecture</span>
+          </div>
+          <div class="case-study-body">
+            <div class="case-study-location">New York, NY &bull; Tribeca Historic District</div>
+            <h3 class="case-study-title">Tribeca Warehouse Spatial Transformation</h3>
+            <div class="case-study-challenge-pill">
+              Challenge: NYC DOB / Landmarks approvals &amp; structural steel floor penetrations.
+            </div>
+            <p class="case-study-summary">
+              A complete spatial overhaul of a 19th-century duplex loft featuring custom architectural stairs, structural steel mezzanine, and acoustic decoupling.
+            </p>
+            <div class="case-study-metrics">
+              <div class="metric-col">
+                <h6>Scale / Scope</h6>
+                <p>4,200 SF Duplex Loft</p>
+              </div>
+              <div class="metric-col">
+                <h6>Approval Status</h6>
+                <p>NYC DOB / LPC Sign-off</p>
+              </div>
+            </div>
+            <div class="prior-firm-credit">
+              Role: Project Lead &bull; Prior Experience: [Placeholder: Manhattan Design Group]
+            </div>
+            <div style="margin-top: 1.5rem;">
+              <button class="btn btn-primary btn-sm" style="width: 100%;" data-case-study-target="tribeca-loft">Read Case Study &amp; Technical Breakdown</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Case Study 5 (Commercial Visualization) -->
+        <div class="case-study-card" data-category="commercial">
+          <div class="case-study-media">
+            <img src="../assets/commercial_tower.jpg" alt="Metropolitan Commercial Tower Visualization" class="case-study-img">
+            <span class="case-study-type-badge">Commercial &bull; 3D Visualization</span>
+          </div>
+          <div class="case-study-body">
+            <div class="case-study-location">New York, NY &bull; Midtown Commercial</div>
+            <h3 class="case-study-title">Midtown Mixed-Use Tower Archviz Suite</h3>
+            <div class="case-study-challenge-pill">
+              Challenge: Pre-leasing visualization &amp; city council zoning shadow presentation.
+            </div>
+            <p class="case-study-summary">
+              Comprehensive 3D exterior renderings, lobby interior spatial simulations, and solar envelope studies created for institutional developer pre-leasing.
+            </p>
+            <div class="case-study-metrics">
+              <div class="metric-col">
+                <h6>Scope</h6>
+                <p>4K Still Archviz &amp; Animation</p>
+              </div>
+              <div class="metric-col">
+                <h6>Client Type</h6>
+                <p>Developer / Architect Peer</p>
+              </div>
+            </div>
+            <div class="prior-firm-credit">
+              Service: In-House Architectural Visualization &bull; Designs by KOA
+            </div>
+            <div style="margin-top: 1.5rem;">
+              <a href="../contact/index.html?service=archviz" class="btn btn-outline btn-sm" style="width: 100%;">Inquire About Archviz Services</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       Consultation CTA
+       ========================================================================= -->
+  <section class="section text-center">
+    <div class="preview-container" style="max-width: 800px;">
+      <div class="eyebrow">Have a Complex Property?</div>
+      <h2 class="title-display">Let’s Evaluate Your Site’s Potential</h2>
+      <p class="lead-text" style="margin: 0 auto 2.5rem auto;">
+        We review zoning maps, topography, and property constraints to uncover what can truly be built before you commit.
+      </p>
+      <a href="../contact/index.html" class="btn btn-primary btn-lg">Request Site Feasibility Assessment</a>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       Footer (Preview Isolated)
+       ========================================================================= -->
+  <footer class="preview-footer">
+    <div class="preview-container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="preview-brand">
+            <div class="preview-brand-mark"></div>
+            <div class="preview-brand-text">
+              <span class="preview-brand-name">DESIGNS BY <span>KOA</span></span>
+              <span class="preview-brand-sub">ARCHITECTURE &amp; RESIDENTIAL [CONCEPT]</span>
+            </div>
+          </div>
+          <p>Residential architecture and problem-solving design practice serving NY, NJ, and CT.</p>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Preview Pages</h4>
+          <ul class="footer-links">
+            <li><a href="../index.html">Practice Overview</a></li>
+            <li><a href="../services/index.html">Lifecycle Services</a></li>
+            <li><a href="index.html">Projects &amp; Case Studies</a></li>
+            <li><a href="../process/index.html">11-Step Process</a></li>
+            <li><a href="../about/index.html">About &amp; Credentials</a></li>
+            <li><a href="../contact/index.html">Start a Project</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Project Categories</h4>
+          <ul class="footer-links">
+            <li><a href="#all">New Custom Residences</a></li>
+            <li><a href="#all">Historic Additions &amp; Pavilions</a></li>
+            <li><a href="#all">Coastal Long Island Sound Homes</a></li>
+            <li><a href="#all">Urban Loft Interior Architecture</a></li>
+            <li><a href="#all">Peer Architectural Rendering</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Internal Testing</h4>
+          <ul class="footer-links">
+            <li><a href="#" onclick="document.getElementById('previewInfoModal').classList.add('active'); return false;">Preview Information</a></li>
+            <li><a href="../contact/index.html">Test Intake Form</a></li>
+            <li><span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted);">Branch: koa-licensed-site-preview</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 Designs by KOA. Internal Concept Preview — Not for Public Distribution.</div>
+        <div style="font-family: var(--font-mono); font-size: 0.75rem;">Status: Isolated Staging &bull; Robots: Noindex</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/preview.js"></script>
+</body>
+</html>

@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Privacy & Staging Meta - Strictly Non-Indexed -->
+  <meta name="robots" content="noindex, nofollow">
+  <title>Start a Project &amp; Consultation Intake | Designs by KOA</title>
+  <meta name="description" content="Concept Preview: Client consultation intake form for custom residential architecture, additions, zoning assessments, and 3D visualization.">
+  
+  <link rel="stylesheet" href="../css/preview.css">
+</head>
+<body>
+
+  <!-- =========================================================================
+       Preview Top Disclaimer Banner
+       ========================================================================= -->
+  <div class="preview-banner" id="previewBanner">
+    <div class="preview-banner-content">
+      <span class="preview-badge-pulse"></span>
+      <span>Concept Preview — Not for Public Release</span>
+      <button class="preview-banner-info-btn" id="previewInfoBtn">Preview Info</button>
+    </div>
+  </div>
+
+  <!-- Preview Info Modal -->
+  <div class="preview-modal" id="previewInfoModal">
+    <div class="preview-modal-content">
+      <button class="preview-modal-close" id="previewInfoClose">&times;</button>
+      <div class="eyebrow" style="margin-bottom: 0.5rem;">Internal Staging Environment</div>
+      <h3 class="title-card" style="font-size: 1.5rem; margin-bottom: 0.75rem;">About This Future Preview</h3>
+      <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6; margin-bottom: 1rem;">
+        This consultation intake form is configured in safe preview mode. Submissions are intercepted client-side to test UX flow without submitting test leads into production HubSpot CRM.
+      </p>
+      <div style="background: rgba(245, 158, 11, 0.08); border: 1px dashed rgba(245, 158, 11, 0.4); border-radius: var(--radius-sm); padding: 1rem; margin-bottom: 1.25rem;">
+        <p style="color: #fde68a; font-size: 0.8rem; line-height: 1.5;">
+          <strong>CRM Safety:</strong> No emails or webhooks are dispatched to live sales teams during preview testing.
+        </p>
+      </div>
+      <button class="btn btn-gold-outline btn-sm" onclick="document.getElementById('previewInfoModal').classList.remove('active');" style="width: 100%;">Understood &amp; Continue</button>
+    </div>
+  </div>
+
+  <!-- Preview Submission Confirmation Modal -->
+  <div class="preview-modal" id="previewSubmissionModal">
+    <div class="preview-modal-content" style="max-width: 580px;">
+      <button class="preview-modal-close" id="previewSubClose">&times;</button>
+      <div class="eyebrow" style="margin-bottom: 0.5rem; color: var(--accent-emerald); border-color: rgba(16,185,129,0.3); background: rgba(16,185,129,0.1);">
+        ✓ Preview Intake Simulated
+      </div>
+      <h3 class="title-card" style="font-size: 1.4rem; margin-bottom: 0.75rem;">Consultation Request Simulated</h3>
+      <p style="color: var(--text-secondary); font-size: 0.88rem; line-height: 1.6; margin-bottom: 1.25rem;">
+        The form passed all validation checks! In production, this intake will route directly into the Designs by KOA CRM with automated confirmation and initial zoning check scheduling.
+      </p>
+      
+      <div id="simulatedIntakeSummary" style="margin-bottom: 1.5rem;">
+        <!-- Injected via preview.js -->
+      </div>
+
+      <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-subtle); padding: 0.85rem; border-radius: var(--radius-sm); font-size: 0.78rem; color: var(--text-muted); margin-bottom: 1.5rem;">
+        <em>Staging Safety:</em> Zero test data was sent to production HubSpot workflows.
+      </div>
+
+      <button class="btn btn-primary btn-sm" onclick="document.getElementById('previewSubmissionModal').classList.remove('active');" style="width: 100%;">Close &amp; Continue Testing</button>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       Header & Navigation (Isolated to /future-preview/)
+       ========================================================================= -->
+  <header class="preview-header" id="previewHeader">
+    <div class="preview-nav-container">
+      <a href="../index.html" class="preview-brand">
+        <div class="preview-brand-mark"></div>
+        <div class="preview-brand-text">
+          <span class="preview-brand-name">DESIGNS BY <span>KOA</span></span>
+          <span class="preview-brand-sub">ARCHITECTURE &bull; RESIDENTIAL [CONCEPT]</span>
+        </div>
+      </a>
+
+      <ul class="preview-nav-menu" id="previewNavMenu">
+        <li><a href="../index.html" class="preview-nav-link">Overview</a></li>
+        <li><a href="../services/index.html" class="preview-nav-link">Services</a></li>
+        <li><a href="../projects/index.html" class="preview-nav-link">Projects &amp; Case Studies</a></li>
+        <li><a href="../process/index.html" class="preview-nav-link">Process</a></li>
+        <li><a href="../about/index.html" class="preview-nav-link">About</a></li>
+      </ul>
+
+      <div class="preview-nav-actions">
+        <a href="index.html" class="btn btn-primary btn-sm">Start a Project</a>
+        <button class="preview-mobile-toggle" id="previewMobileToggle" aria-label="Toggle Navigation">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- =========================================================================
+       Contact Hero & Form Wrapper
+       ========================================================================= -->
+  <section class="section" style="padding-bottom: 5rem;">
+    <div class="preview-container">
+      <div class="section-header text-center">
+        <div class="eyebrow">Project Discovery &amp; Qualification</div>
+        <h1 class="title-display">Tell Us About Your Vision</h1>
+        <p class="lead-text" style="margin: 0 auto 2.5rem auto;">
+          Whether you are evaluating a prospective property purchase, planning a major renovation, or ready to build a custom residence, sharing these initial details helps us prepare an insightful consultation.
+        </p>
+      </div>
+
+      <div class="form-wrapper">
+        <form id="previewIntakeForm">
+
+          <!-- Section 1: Client Information -->
+          <div style="margin-bottom: 2.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border-subtle);">
+            <h3 style="font-family: var(--font-display); font-size: 1.25rem; color: #fff; margin-bottom: 1.25rem;">1. Contact Information</h3>
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label class="form-label" for="firstName">First Name <span class="required">*</span></label>
+                <input type="text" id="firstName" class="form-control" placeholder="e.g. Eleanor" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="lastName">Last Name <span class="required">*</span></label>
+                <input type="text" id="lastName" class="form-control" placeholder="e.g. Vance" required>
+              </div>
+            </div>
+
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label class="form-label" for="email">Email Address <span class="required">*</span></label>
+                <input type="email" id="email" class="form-control" placeholder="eleanor@example.com" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="phone">Phone Number</label>
+                <input type="tel" id="phone" class="form-control" placeholder="(203) 555-0192">
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 2: Property & Scope -->
+          <div style="margin-bottom: 2.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border-subtle);">
+            <h3 style="font-family: var(--font-display); font-size: 1.25rem; color: #fff; margin-bottom: 1.25rem;">2. Property &amp; Project Scope</h3>
+            
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label class="form-label" for="projectLocation">Project Location (Town &amp; State) <span class="required">*</span></label>
+                <input type="text" id="projectLocation" class="form-control" placeholder="e.g. Greenwich, CT or Garrison, NY" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="propertyType">Property Type</label>
+                <select id="propertyType" class="form-control">
+                  <option value="Single Family Residence">Single Family Residence</option>
+                  <option value="Undeveloped Land / Raw Site">Undeveloped Land / Raw Site</option>
+                  <option value="Historic Manor / Estate">Historic Manor / Estate</option>
+                  <option value="Urban Townhouse / Duplex Loft">Urban Townhouse / Duplex Loft</option>
+                  <option value="Commercial / Mixed-Use">Commercial / Mixed-Use</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="projectScope">Primary Scope Requested <span class="required">*</span></label>
+              <select id="projectScope" class="form-control" required>
+                <option value="" disabled selected>Select Primary Service</option>
+                <option value="Custom Residential New Construction">Custom Residential New Construction</option>
+                <option value="Major Architectural Addition & Renovation">Major Architectural Addition &amp; Renovation</option>
+                <option value="Pre-Purchase Site Feasibility & Zoning Review">Pre-Purchase Site Feasibility &amp; Zoning Review</option>
+                <option value="Municipal Board / Variance Representation">Municipal Board / Variance Representation</option>
+                <option value="3D Architectural Visualization & VR Only">3D Architectural Visualization &amp; VR Only</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="projectStage">Current Project Stage</label>
+              <select id="projectStage" class="form-control">
+                <option value="Exploring Feasibility / Early Idea">Exploring Feasibility / Early Idea</option>
+                <option value="Property Under Contract / Pre-Closing">Property Under Contract / Pre-Closing</option>
+                <option value="Property Owned / Ready to Design">Property Owned / Ready to Design</option>
+                <option value="Have Concept / Need Construction Docs & Approvals">Have Concept / Need Construction Docs &amp; Approvals</option>
+                <option value="Permits Pending / Need Contractor Selection Support">Permits Pending / Need Contractor Selection Support</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Section 3: Budget & Timeline -->
+          <div style="margin-bottom: 2.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border-subtle);">
+            <h3 style="font-family: var(--font-display); font-size: 1.25rem; color: #fff; margin-bottom: 0.5rem;">3. Approximate Construction Budget</h3>
+            <p style="color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 1.25rem;">
+              Knowing your target construction expenditure allows us to tailor design solutions that are buildable within your financial parameters.
+            </p>
+
+            <div class="pill-grid" style="margin-bottom: 1.75rem;">
+              <div class="pill-option">
+                <input type="radio" name="budget" id="b1" value="$250k – $500k">
+                <label for="b1" class="pill-label">$250k – $500k</label>
+              </div>
+              <div class="pill-option">
+                <input type="radio" name="budget" id="b2" value="$500k – $1M">
+                <label for="b2" class="pill-label">$500k – $1M</label>
+              </div>
+              <div class="pill-option">
+                <input type="radio" name="budget" id="b3" value="$1M – $2.5M" checked>
+                <label for="b3" class="pill-label">$1M – $2.5M</label>
+              </div>
+              <div class="pill-option">
+                <input type="radio" name="budget" id="b4" value="$2.5M – $5M+">
+                <label for="b4" class="pill-label">$2.5M – $5M+</label>
+              </div>
+            </div>
+
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label class="form-label" for="timeline">Desired Start / Completion Timeline</label>
+                <select id="timeline" class="form-control">
+                  <option value="Immediate (< 3 months)">Immediate (< 3 months)</option>
+                  <option value="3 – 6 months" selected>3 – 6 months</option>
+                  <option value="6 – 12 months">6 – 12 months</option>
+                  <option value="12+ months / Future Planning">12+ months / Future Planning</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="referral">How Did You Hear About KOA?</label>
+                <select id="referral" class="form-control">
+                  <option value="Architect or Designer Peer">Architect or Designer Peer</option>
+                  <option value="General Contractor Referral">General Contractor Referral</option>
+                  <option value="Search / Web">Search / Web</option>
+                  <option value="Social Media / Portfolio">Social Media / Portfolio</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 4: Site Constraints & Narrative -->
+          <div style="margin-bottom: 2.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border-subtle);">
+            <h3 style="font-family: var(--font-display); font-size: 1.25rem; color: #fff; margin-bottom: 0.5rem;">4. Known Site or Zoning Challenges</h3>
+            <p style="color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 1.25rem;">
+              Check any known regulatory or environmental constraints (we will verify during feasibility):
+            </p>
+
+            <div class="checkbox-grid" style="margin-bottom: 1.75rem;">
+              <label class="checkbox-item">
+                <input type="checkbox" name="constraints" value="Setback / FAR Limit">
+                <span>Setback / FAR Limit</span>
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" name="constraints" value="Steep Slope / Ledge">
+                <span>Steep Slope / Ledge</span>
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" name="constraints" value="Wetlands / Coastal Buffer">
+                <span>Wetlands / Coastal Buffer</span>
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" name="constraints" value="Historic District / HOA">
+                <span>Historic District / HOA</span>
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" name="constraints" value="FEMA Flood Zone">
+                <span>FEMA Flood Zone</span>
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" name="constraints" value="None Known Yet">
+                <span>None Known Yet</span>
+              </label>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="description">Brief Project Description / Wishlist</label>
+              <textarea id="description" class="form-control" placeholder="Describe your vision, key spaces required, architectural style preferences, and any specific questions you'd like to cover..."></textarea>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Optional: Attach Site Survey, Photos, or Sketches</label>
+              <div class="file-upload-dropzone">
+                <div style="font-size: 1.5rem; color: var(--accent-gold); margin-bottom: 0.5rem;">📁</div>
+                <p style="font-size: 0.85rem; color: var(--text-primary); font-weight: 500;">Drag and drop site files here, or click to browse</p>
+                <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.25rem;">Supports PDF, DWG, JPG, PNG (Max 25MB)</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <div>
+            <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">Submit Consultation Request (Preview Mode)</button>
+            <p style="text-align: center; font-size: 0.78rem; color: var(--text-muted); margin-top: 0.75rem;">
+              🔒 Isolated Preview Handler &bull; Zero Live CRM Pollution &bull; Safe Test Submission
+            </p>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       Footer (Preview Isolated)
+       ========================================================================= -->
+  <footer class="preview-footer">
+    <div class="preview-container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="preview-brand">
+            <div class="preview-brand-mark"></div>
+            <div class="preview-brand-text">
+              <span class="preview-brand-name">DESIGNS BY <span>KOA</span></span>
+              <span class="preview-brand-sub">ARCHITECTURE &amp; RESIDENTIAL [CONCEPT]</span>
+            </div>
+          </div>
+          <p>Full-lifecycle residential architecture and design practice serving New York, New Jersey, and Connecticut.</p>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Preview Pages</h4>
+          <ul class="footer-links">
+            <li><a href="../index.html">Practice Overview</a></li>
+            <li><a href="../services/index.html">Lifecycle Services</a></li>
+            <li><a href="../projects/index.html">Projects &amp; Case Studies</a></li>
+            <li><a href="../process/index.html">11-Step Process</a></li>
+            <li><a href="../about/index.html">About &amp; Credentials</a></li>
+            <li><a href="index.html">Start a Project</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Tri-State Coverage</h4>
+          <ul class="footer-links">
+            <li><a href="../services/index.html#ny">New York Projects</a></li>
+            <li><a href="../services/index.html#nj">New Jersey Projects</a></li>
+            <li><a href="../services/index.html#ct">Connecticut Projects</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Internal Testing</h4>
+          <ul class="footer-links">
+            <li><a href="#" onclick="document.getElementById('previewInfoModal').classList.add('active'); return false;">Preview Information</a></li>
+            <li><a href="index.html">Test Intake Form</a></li>
+            <li><span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted);">Branch: koa-licensed-site-preview</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 Designs by KOA. Internal Concept Preview — Not for Public Distribution.</div>
+        <div style="font-family: var(--font-mono); font-size: 0.75rem;">Status: Isolated Staging &bull; Robots: Noindex</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/preview.js"></script>
+</body>
+</html>
